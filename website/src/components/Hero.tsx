@@ -74,7 +74,6 @@ export default function Hero() {
               fontSize: 'clamp(3rem, 10vw, 3.5rem)',
             }}
           >
-            Your&nbsp;next&nbsp;
             <Typography
               component="span"
               variant="h1"
@@ -86,7 +85,7 @@ export default function Hero() {
                 }),
               })}
             >
-              great hire
+             your next great hire
             </Typography>
           </Typography>
           <Typography
