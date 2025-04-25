@@ -12,17 +12,16 @@ jobs:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
-      # 🧪 Run Jest Tests
       - name: Run Jest Tests
+        working-directory: website
         run: npm test
 
-      # 📚 Run Vale for documentation validation
       - name: Run Vale
         run: vale .
-        continue-on-error: true  # Optional: don't block PRs on style errors
+        continue-on-error: true
 
-      # 🛠️ Build the static site
       - name: Build project
+        working-directory: website
         run: npm run build
 
 
