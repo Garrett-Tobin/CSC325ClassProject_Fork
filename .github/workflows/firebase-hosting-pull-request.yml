@@ -16,19 +16,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Jest Tests
+      - name: Set working directory
+        run: echo "Working directory is set to website"
         working-directory: website
+
+      - name: List files in website/
+        run: ls -R website  # List files to ensure the correct directory
+
+      - name: Run Jest Tests
+        working-directory: website  # Ensure Jest runs in the correct directory
         run: npm test
 
       - name: Run Vale
-        run: vale .
+        run: vale .  # Run Vale for documentation linting
         continue-on-error: true
 
-      - name: List files in website/
-        run: ls -R website
-
       - name: Build project
-        working-directory: website
+        working-directory: website  # Ensure build command runs in the 'website' directory
         run: npm run build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
