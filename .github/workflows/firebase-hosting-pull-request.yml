@@ -23,6 +23,9 @@ jobs:
         run: vale .
         continue-on-error: true
 
+      - name: List files in website/
+        run: ls -R website
+
       - name: Build project
         working-directory: website
         run: npm run build
