@@ -7,11 +7,14 @@ permissions:
   checks: write
   contents: read
   pull-requests: write
+
 jobs:
   build_and_preview:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - name: Run Jest Tests
         working-directory: website
         run: npm test
@@ -24,12 +27,8 @@ jobs:
         working-directory: website
         run: npm run build
 
-
-      - uses: actions/checkout@v4
-      - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{
-            secrets.FIREBASE_SERVICE_ACCOUNT_FLUTTER_FIREBASE_PROJECT_CFC72 }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FLUTTER_FIREBASE_PROJECT_CFC72 }}
           projectId: flutter-firebase-project-cfc72
